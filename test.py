@@ -3,6 +3,7 @@ from getch import getch
 import time
 
 speed = 0;
+angle = 0;
 
 grasshopper = RC(0, 1);
 grasshopper.setServoAngle(0);
@@ -19,6 +20,9 @@ while (True):
 
   if key == 115: # s
     grasshopper.setServoAngle(0);
+    if speed > 0:
+      grasshopper.setSpeed(-2048);
+      time.sleep(.1);
     grasshopper.setSpeed(0);
     speed = 0;
   
@@ -37,16 +41,21 @@ while (True):
         if (speed > -1500):
 	  speed = speed - 500;
         grasshopper.setSpeed(speed);
-	time.sleep(.1);
-	grasshopper.setSpeed(0);
-	time.sleep(.1);
-	grasshopper.setSpeed(speed);
 
       elif key == 67: # right
-        grasshopper.setServoAngle(50);
+        if (angle == -50):
+	  angle = 0;
+        else:
+	  angle = 50;
+	grasshopper.setServoAngle(angle);
 
       elif key == 68: # left
-        grasshopper.setServoAngle(-50);
+	if (angle == 50):
+	  angle = 0;
+        else:
+	  angle = -50;
+
+        grasshopper.setServoAngle(angle);
 #
 #  elif key == 224: # Special Keys (arrows, functions keys, etc.)
 #    key = ord(getch());
