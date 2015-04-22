@@ -61,17 +61,26 @@ pwm.setPWMFreq(60)                        # Set frequency to 60 Hz
 #arm(1)
 while (True):
   # Change speed of continuous servo on channel O
-  setAngle(0, -50) 
-  setSpeed(1, -100)
-  time.sleep(1)
-  setAngle(0, 0) 
-  setSpeed(1, 0)
-  time.sleep(1)
-  setAngle(0, 50) 
-  setSpeed(1, -100)
-  time.sleep(1)
-  setAngle(0, 0) 
-  setSpeed(1, 0)
-  time.sleep(1)
+  setAngle(0, 0);
+  setSpeed(1, 500);
+  time.sleep(1);
+  setSpeed(1, -2048);
+  setSpeed(1, 0);
+#  setSpeed(1, -900);
+  time.sleep(1);
+  setSpeed(1, -500);
+  time.sleep(1);
+#  setAngle(0, -50) 
+#  setSpeed(1, -700)
+#  time.sleep(1)
+#  setAngle(0, 0) 
+#  setSpeed(1, 0)
+#  time.sleep(1)
+#  setAngle(0, 50) 
+#  setSpeed(1, 700)
+#  time.sleep(1)
+#  setAngle(0, 0) 
+#  setSpeed(1, 0)
+#  time.sleep(1)
 
 
