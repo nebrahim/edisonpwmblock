@@ -1,9 +1,15 @@
 from RC import RC
 from getch import getch
 import time
+from Adafruit_ADS1x15 import ADS1x15
 
 speed = 0;
 angle = 0;
+
+ADS1015 = 0x00  # 12-bit ADC
+gain    = 4096  # +/- 4.096V
+sps     = 250  # 250 samples per second
+adc     = ADS1x15(ic=ADS1015)
 
 grasshopper = RC(0, 1);
 grasshopper.setServoAngle(0);
@@ -17,6 +23,14 @@ while (True):
     grasshopper.setServoAngle(0);
     grasshopper.setSpeed(0);
     break;
+  
+  if key == 114: # r
+    volts = adc.readADCSingleEnded(0, gain, sps) / 1000;
+    print "%.6f" % (volts);
+    if volts < 0.25:
+      grasshopper.setServoAngle(0);
+      grasshopper.setSpeed(0);
+      speed = 0;
 
   if key == 115: # s
     grasshopper.setServoAngle(0);
